@@ -1,0 +1,16 @@
+OBSERVATIONS
+
+1. Online Inference vs Batch Inference:
+Online inference predicts one incoming record immediately and returns a result for that request. Batch inference predicts multiple records together and is useful for scheduled or high-volume processing.
+
+2. Streaming Inference vs Batch Inference:
+Streaming inference processes records as they arrive, one at a time or in small continuous events. Batch inference waits until a group of records is collected and processes them together.
+
+3. Why FastAPI is used:
+FastAPI makes it straightforward to expose a trained model through HTTP REST endpoints. It supports Pydantic request validation, automatic OpenAPI documentation and interactive Swagger UI at /docs.
+
+4. Why reuse the same trained model:
+Reusing the same saved pipeline keeps preprocessing and model parameters consistent across online, batch, streaming and API predictions. Retraining separately can produce inconsistent behavior and makes results harder to compare.
+
+Implementation note:
+The measured hold-out accuracy is written to metrics.json after running train_model.py. Do not report an accuracy value before executing the model on the required Kaggle train.csv.
